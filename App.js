@@ -3,46 +3,45 @@ import {SafeAreaView, StyleSheet, Text, View, TouchableHighlight, TextInput } fr
 
 export default function App() {
   
-  const [valor1,setValor1]=useState(0)
-  const [valor2,setValor2]=useState(0)
+  const [operacao,setOperacao]=useState(0)
   const [resultado,setResultado]=useState(0)
 
-  const soma=()=>{
-    setResultado(parseInt(valor1) + parseInt(valor2))}
+  const operar=()=>{
+    // setResultado(parseInt(valor1) + parseInt(valor2))}
+    setResultado(eval(operacao)) //A função eval() computa um código JavaScript representado como uma string.
+
+
+  }
 
   return(
     <SafeAreaView style={styles.container}>
       <Text>Calculadora</Text>
       
+      <View style={styles.display}>
       <TextInput
-      style={styles.display}
-      value={String(valor1)}
-      onChangeText={(texto)=> {setValor1(texto)}}
+      style={styles.txtDisplayOperacao}
+      value={String(operacao)}
+      onChangeText={(texto)=> {setOperacao(texto)}}
       // keyboardType='numeric'
       />
-      
+               
       <TextInput
-      style={styles.display}
-      value={String(valor2)}
-      onChangeText={(texto)=> {setValor2(texto)}}
-      // keyboardType='numeric'
-      />
-     
-      <TextInput
-      style={styles.display}
+      style={styles.txtDisplayResultado}
       value={String(resultado)}
       onChangeText={(texto)=> {setResultado(texto)}}
       // keyboardType='numeric'
       />
+      </View>
 
+      <View>
       <TouchableHighlight
         style={styles.btn}
-        onPress={()=>soma()}
+        onPress={()=>operar()}
       >
 
         <Text style={styles.txtBtn}>Somar</Text>
       </TouchableHighlight>
-      
+      </View>
     </SafeAreaView>
   );
 }
@@ -51,22 +50,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#aaa',
-    padding:10,
+    padding:20,
     // alignItems: 'center',
     // justifyContent: 'center',
   },
   display:{
-    borderWidth:1,
-    borderRadius:10,
-    padding:10,
-  },
-  btn:{
-    backgroundColor:'#555',
+    backgroundColor:'#333',
     padding:20,
 
   },
+  txtDisplayOperacao:{
+    color:'#fff',   
+    padding:10,
+
+  },
+  txtDisplayResultado:{
+    color:'#fff',
+    padding:10,
+  },
+
+  btn:{
+    backgroundColor:'#555',
+    padding:30,
+
+  },
   txtBtn:{
-    Color:'#fff'
+    color:'#fff',
+    
 
   }
 });
