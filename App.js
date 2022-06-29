@@ -10,12 +10,10 @@ let estados={
   ponto:false,
 }
 
-
 export default function App() {
   
   const [vtela,setVtela]=useState(estados.valorTela)//valor tela
   const [vres,setVres]=useState(estados.resultado) //valor resposta
-
 
 //--- informações --
   console.log('vTela' ,estados.valorTela)
@@ -38,7 +36,7 @@ export default function App() {
       return
     }
     
-    // 
+    // joga resultado para tela
     if((digito=='+' || digito=='-' || digito=='/' || digito=='*') && estados.operado){
       estados.valorTela=estados.resultado
       estados.resultado=0
@@ -48,9 +46,6 @@ export default function App() {
     setVtela(estados.valorTela)
     setVres(estados.resultado)
     estados.operado= false
-
-    
-
   }
 
   const limparTela=()=>{
@@ -65,7 +60,6 @@ export default function App() {
     setVres(estados.resultado)
   }
 
-
   const opera=(digito)=>{
     if(digito=='AC'){
       limparTela()
@@ -76,6 +70,7 @@ export default function App() {
       setVtela(estados.valorTela)
       return
     }
+    // cálculo
     try{
       estados.resultado=eval(estados.valorTela)
       estados.operado=true
