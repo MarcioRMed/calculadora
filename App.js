@@ -10,12 +10,39 @@ let estados={
   ponto:false,
 }
 
+
 export default function App() {
   
   const [vtela,setVtela]=useState(estados.valorTela)//valor tela
   const [vres,setVres]=useState(estados.resultado) //valor resposta
 
+
+//--- informações --
+  console.log('vTela' ,estados.valorTela)
+  console.log('vVres' ,estados.resultado)
+  console.log('operado' ,estados.operado)
+  console.log('ponto', estados.ponto)
+
   const addDigito=(digito)=>{
+
+    // --- tratamento erro ponto ---
+    if(digito=='+' || digito=='-' || digito=='/' || digito=='*'){
+      estados.ponto=false
+    }
+    
+    if(digito=='.' && !estados.ponto){
+      estados.ponto=true
+      estados.operado=false
+    
+    }else if(digito=='.' && estados.ponto){
+      return
+    }
+    
+    // 
+    if((digito=='+' || digito=='-' || digito=='/' || digito=='*') && estados.operado){
+      estados.valorTela=estados.resultado
+      estados.resultado=0
+    }
 
     estados.valorTela=estados.valorTela + digito
     setVtela(estados.valorTela)
@@ -23,10 +50,6 @@ export default function App() {
     estados.operado= false
 
     
-    if((digito=='+' || digito=='-') || digito=='/' || digito=='*' && estados.operado){
-      estados.valorTela=estados.resultado
-      estados.resultado=0
-    }
 
   }
 
