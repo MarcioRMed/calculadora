@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, View, Text, TouchableHighlight, } from 'react-native'
+import {StyleSheet, View, Text, } from 'react-native'
 // ColorPropType
 export default props=> {
   return(

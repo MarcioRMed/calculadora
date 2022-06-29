@@ -27,10 +27,12 @@ export default props=> {
   }
   
   return(
-    <TouchableHighlight>
+    <TouchableHighlight
       onPress={props.aoClicar}
+    >
 
-      <Text style={stylesBotoes}>{props.label}</Text>
+     <Text style={stylesBotoes}>{props.label}</Text>
+    
     </TouchableHighlight>
   )
 }
@@ -41,8 +43,8 @@ export default props=> {
 const styles = StyleSheet.create({
   btn:{
     fontSize:30,
-    height:Dimensions.get('window').width/4,    
-    width:Dimensions.get('window').width/4 ,   
+    // height:Dimensions.get('window').width/4,    
+    width:Dimensions.get('window').width/4,   
     padding:20,
     backgroundColor:'#000',
     color:'#fff',
