@@ -21,7 +21,7 @@ export default function App() {
   console.log('operado' ,estados.operado)
   console.log('ponto', estados.ponto)
 
-  const addDigito=(digito)=>{
+  const addDigito=(digito)=>{ 
 
     // --- tratamento erro ponto ---
     if(digito=='+' || digito=='-' || digito=='/' || digito=='*'){
@@ -36,7 +36,7 @@ export default function App() {
       return
     }
     
-    // joga resultado para tela
+    // joga resultado para tela de cálculo
     if((digito=='+' || digito=='-' || digito=='/' || digito=='*') && estados.operado){
       estados.valorTela=estados.resultado
       estados.resultado=0
@@ -46,7 +46,29 @@ export default function App() {
     setVtela(estados.valorTela)
     setVres(estados.resultado)
     estados.operado= false
+
+
+
+
+
+   //tratamento do conversor rem px
+   if(digito && estadoRemPx){
+     alert('por favor, digite o valor antes de converter')
+  
   }
+
+
+  if(estadoRemPx){
+    alert('clicou')
+  }
+
+  console.log('digito', digito)
+
+  }
+
+
+
+
 
   const limparTela=()=>{
     estados={
@@ -84,6 +106,28 @@ export default function App() {
 
   }
 
+  //--- conversões ---
+  
+    let rem=16 //1rem =16
+    let estadoRemPx = false
+
+    const remPx=()=>{      
+        let valorPx = (estados.valorTela)*rem
+        setVres(valorPx + ' px')
+        estadoRemPx = true          
+        console.log('estadoRemPx', estadoRemPx)       
+      
+        setVtela(estados.valorTela + ' rem')
+      }
+     
+    const pxRem=()=>{
+    let valorRem = (estados.valorTela)/ rem
+      setVres(valorRem +' rem')
+      setVtela(estados.valorTela + ' px')
+    }
+  
+
+  
 
   return(
     <SafeAreaView style={styles.container}>
@@ -92,6 +136,10 @@ export default function App() {
     
     <View style={styles.botoes}>
     <Btn label='AC' ac aoClicar={()=>{opera('AC')}}></Btn> 
+
+    <Btn label='Px -> Rem' ac aoClicar={()=>{pxRem()}}></Btn> 
+    <Btn label='Rem -> Px' ac aoClicar={()=>{remPx()}}></Btn> 
+    
     <Btn label='(' aoClicar={()=>{addDigito('(')}}></Btn>
     <Btn label=')' aoClicar={()=>{addDigito(')')}}></Btn>
     <Btn label='/' operacao aoClicar={()=>{addDigito('/')}}></Btn> 
