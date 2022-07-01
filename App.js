@@ -23,7 +23,7 @@ export default function App() {
 
   const addDigito=(digito)=>{ 
 
-    // --- tratamento erro ponto ---
+    // --- tratamento erro do ponto ---
     if(digito=='+' || digito=='-' || digito=='/' || digito=='*'){
       estados.ponto=false
     }
@@ -37,7 +37,7 @@ export default function App() {
     }
     
     // joga resultado para tela de cálculo
-    if((digito=='+' || digito=='-' || digito=='/' || digito=='*') && estados.operado){
+    if((digito=='+' || digito=='-' || digito=='/' || digito=='*' || digito=='%') && estados.operado){
       estados.valorTela=estados.resultado
       estados.resultado=0
     }
@@ -46,8 +46,6 @@ export default function App() {
     setVtela(estados.valorTela)
     setVres(estados.resultado)
     estados.operado= false
-
-
 
 
 
@@ -127,19 +125,33 @@ export default function App() {
     }
   
 
+
+    const calcPorcento =()=>{
+      let valorPorcentoDesejado
+      let deQuanto
+      
+      let calcPorcento = setVtela(estados.valorTela)/100 * estados.resultado
+
+    }
   
+
 
   return(
     <SafeAreaView style={styles.container}>
       <Text>Calculadora</Text>
       <Display valor={vtela} resultado={vres}/>      
     
+    
     <View style={styles.botoes}>
+    
+    <Btn label='%' aoClicar={()=>{calcPorcento()}}></Btn>
+    
     <Btn label='AC' ac aoClicar={()=>{opera('AC')}}></Btn> 
 
     <Btn label='Px -> Rem' ac aoClicar={()=>{pxRem()}}></Btn> 
     <Btn label='Rem -> Px' ac aoClicar={()=>{remPx()}}></Btn> 
     
+
     <Btn label='(' aoClicar={()=>{addDigito('(')}}></Btn>
     <Btn label=')' aoClicar={()=>{addDigito(')')}}></Btn>
     <Btn label='/' operacao aoClicar={()=>{addDigito('/')}}></Btn> 

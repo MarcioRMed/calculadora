@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     fontSize:30,
     // height:Dimensions.get('window').width/4,    
     width:Dimensions.get('window').width/4,   
+       
     padding:20,
     backgroundColor:'#000',
     color:'#fff',
