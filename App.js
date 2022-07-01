@@ -143,7 +143,7 @@ export default function App() {
     
 
 
-    // resolver esta parte
+    // implemtar o uso do porcento?
 
     const Porcento=()=>{
 
