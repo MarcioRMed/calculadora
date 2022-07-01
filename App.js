@@ -16,12 +16,19 @@ export default function App() {
   const [vres,setVres]=useState(estados.resultado) //valor resposta
 
 //--- informações --
-  console.log('vTela' ,estados.valorTela)
-  console.log('vVres' ,estados.resultado)
-  console.log('operado' ,estados.operado)
-  console.log('ponto', estados.ponto)
+  // console.log('vTela' ,estados.valorTela)
+  // console.log('vVres' ,estados.resultado)
+  // console.log('operado' ,estados.operado)
+  // console.log('ponto', estados.ponto)
 
   const addDigito=(digito)=>{ 
+
+
+
+
+    
+
+
 
     // --- tratamento erro do ponto ---
     if(digito=='+' || digito=='-' || digito=='/' || digito=='*'){
@@ -37,7 +44,7 @@ export default function App() {
     }
     
     // joga resultado para tela de cálculo
-    if((digito=='+' || digito=='-' || digito=='/' || digito=='*' || digito=='%') && estados.operado){
+    if((digito=='+' || digito=='-' || digito=='/' || digito=='*')  && estados.operado){
       estados.valorTela=estados.resultado
       estados.resultado=0
     }
@@ -60,7 +67,7 @@ export default function App() {
     alert('clicou')
   }
 
-  console.log('digito', digito)
+  
 
   }
 
@@ -92,7 +99,7 @@ export default function App() {
     }
     // cálculo
     try{
-      estados.resultado=eval(estados.valorTela)
+      estados.resultado=eval(estados.valorTela).toString(2)
       estados.operado=true
       setVres(estados.resultado)
 
@@ -101,6 +108,15 @@ export default function App() {
       estados.operado=true
       setVres(estados.resultado)
     }
+
+ 
+
+
+
+    
+  
+
+
 
   }
 
@@ -124,15 +140,41 @@ export default function App() {
       setVtela(estados.valorTela + ' px')
     }
   
+    
 
 
-    const calcPorcento =()=>{
-      let valorPorcentoDesejado
-      let deQuanto
+    // resolver esta parte
+
+    const Porcento=()=>{
+
+      // 50% de 100 = 50
+      // 50/100 * 100
+      //
       
-      let calcPorcento = setVtela(estados.valorTela)/100 * estados.resultado
+        let porcento // 50/100 = 0.5 * deQuanto
+        let resultado
+        let deQuanto 
+        
+        porcento = (estados.valorTela/100) 
+        // mostrar na tela deQuanto
+        setVtela(estados.valorTela + ' % de quanto?')
+  
+        
+
+        console.log('botao % OK')  
+        console.log('estados.valorTela', estados.valorTela)
+        console.log('porcento', porcento )
+        console.log('resultado', estados.resultado)
+        console.log('deQuanto', deQuanto)
+        console.log('resultado', resultado)       
 
     }
+        
+      
+  
+      
+    
+ 
   
 
 
@@ -144,7 +186,7 @@ export default function App() {
     
     <View style={styles.botoes}>
     
-    <Btn label='%' aoClicar={()=>{calcPorcento()}}></Btn>
+    <Btn label='%' operacao aoClicar={()=>{Porcento()}}></Btn>
     
     <Btn label='AC' ac aoClicar={()=>{opera('AC')}}></Btn> 
 
